@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    font-weight: 400;
+    src: local("StratosSkyeng"),
+        url("./Stratos/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff") format("woff"),
+        url("./Stratos/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff2") format("woff2");
+}
+
+
+
+.container {
+    height: 100vh;
+    background: #004980;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    color: #004980;
+    text-align: center;
+    width: 208px;
+}
+
+.content {
+    width: 480px;
+    height: 459px;
+    background: #C2F5FF;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.button-select {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    list-style-type: none;
+}
+
+.button-select__button input[type="radio"] {
+    display: none;
+}
+
+
+.button-start {
+    width: 246px;
+    height: 50px;
+    left: 389px;
+    top: 519px;
+    background: #7AC100;
+    border-radius: 12px;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFFFFF;
+    border: none;
+}
+
+.button-select__button label {
+
+    text-align: center;
+    width: 98px;
+    height: 98px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 150%;
+    color: #0080C1;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+
+}
+
+.button-select__button label,
+.button-select__button input {
+    display: block;
+}

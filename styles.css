@@ -12,11 +12,7 @@
         url("./Stratos/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff2") format("woff2");
 }
 
-.button-select {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-}
+
 
 .container {
     height: 100vh;
@@ -50,19 +46,18 @@
     justify-content: space-evenly;
 }
 
-.button-select__button {
-    width: 98px;
-    height: 98px;
-    background: #FFFFFF;
-    border-radius: 12px;
-    font-family: 'StratosSkyeng';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 64px;
-    line-height: 72px;
-    color: #0080C1;
-    border: none;
+
+.button-select {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    list-style-type: none;
 }
+
+.button-select__button input[type="radio"] {
+    display: none;
+}
+
 
 .button-start {
     width: 246px;
@@ -78,4 +73,28 @@
     line-height: 32px;
     color: #FFFFFF;
     border: none;
+}
+
+.button-select__button label {
+
+    text-align: center;
+    width: 98px;
+    height: 98px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 150%;
+    color: #0080C1;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+
+}
+
+.button-select__button label,
+.button-select__button input {
+    display: block;
 }

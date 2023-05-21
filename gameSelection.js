@@ -47,6 +47,9 @@ export function GameSelection(appEl) {
 
         radioInputs.forEach(radioInput => {
             if (radioInput.checked) {
+                window.application = {
+                    level: radioInput.value
+                }
                 console.log(radioInput.value)
                 levelOne(appEl);
             }

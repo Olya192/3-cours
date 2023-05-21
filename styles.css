@@ -58,6 +58,12 @@
     display: none;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 67px;
+}
 
 .button-start {
     width: 246px;
@@ -73,6 +79,7 @@
     line-height: 32px;
     color: #FFFFFF;
     border: none;
+    cursor: pointer;
 }
 
 .button-select__button label {

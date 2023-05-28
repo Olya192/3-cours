@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
+    "stylelint": "^15.6.2",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "save-dev": "^0.0.1-security"
+  }
+}

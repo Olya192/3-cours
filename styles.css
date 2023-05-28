@@ -105,3 +105,40 @@
 .button-select__button input {
     display: block;
 }
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    width: 975px;
+    gap: 15px;
+}
+
+.game {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 35px;
+}
+
+.game-time__number {
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    color: #FFFFFF;
+
+}
+
+.game-time__name {
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+    font-feature-settings: 'pnum'on, 'lnum'on;
+    color: #FFFFFF;
+    display: flex;
+    padding-left: 29px;
+    gap: 59px;
+}

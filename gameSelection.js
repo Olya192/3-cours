@@ -1,9 +1,7 @@
-import { levelOne } from "./levels/level1.js";
+import { gameSet } from './levels/level2.js'
 
 export function GameSelection(appEl) {
-
-    const renderGameSelection = ((appEl) => {
-
+    const renderGameSelection = (appEl) => {
         const appHtml = `<div class="container">
     <div class="content">
         <p class="title"> Выбери сложность</p>
@@ -33,29 +31,24 @@ export function GameSelection(appEl) {
 
 </div>`
 
-        appEl.innerHTML = appHtml;
-    })
+        appEl.innerHTML = appHtml
+    }
 
     renderGameSelection(appEl)
 
+    const startButtonEl = document.getElementById('form-select')
+    console.log(startButtonEl)
+    startButtonEl.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let radioInputs = document.querySelectorAll('.radio')
 
-    const startButtonEl = document.getElementById('form-select');
-    console.log(startButtonEl);
-    startButtonEl.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let radioInputs = document.querySelectorAll(".radio");
-
-        radioInputs.forEach(radioInput => {
+        radioInputs.forEach((radioInput) => {
             if (radioInput.checked) {
                 window.application = {
-                    level: radioInput.value
+                    level: radioInput.value,
                 }
-                console.log(radioInput.value)
-                levelOne(appEl);
+                gameSet(appEl, window.application.level)
             }
-        });
-
-    });
-
-
+        })
+    })
 }

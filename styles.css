@@ -111,6 +111,7 @@
     flex-wrap: wrap;
     width: 975px;
     gap: 15px;
+    justify-content: center;
 }
 
 .game {
@@ -142,3 +143,34 @@
     padding-left: 29px;
     gap: 59px;
 }
+
+.gamebox__field-card-image {
+    height: 133px;
+    width: 95px;
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+}
+
+.gamebox__field-card-image:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+
+.gamebox__field-card-image.flip {
+    transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face {
+    height: 133px;
+    width: 95px;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.front-face {
+    transform: rotateY(180deg);
+  }

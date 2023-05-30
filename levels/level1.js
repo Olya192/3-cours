@@ -3,7 +3,7 @@ export function levelOne(appEl) {
 
   for (let i = 0; i < 36; i++) {
     console.log("12345");
-    shirt += `<img class="gamebox__field-card-image" src="./levels/img/shirt.svg"/>`;
+    shirt += `<img class="gamebox__field-card-image" src="./static/img/shirt.svg"/>`;
   }
 
   const appHtml = ` <div class="container">

@@ -1,11 +1,10 @@
-import { GameSelection } from "./gameSelection.js";
-import { levelOne } from "./levels/level1.js";
-import { levelTwo } from "./levels/level2.js";
+import { GameSelection } from './gameSelection.js'
 
-const appEl = document.getElementById("app");
 
-// GameSelection(appEl);
+const appEl = document.getElementById('app')
 
-// levelOne(appEl);
+GameSelection(appEl);
 
-levelTwo(appEl);
+
+
+

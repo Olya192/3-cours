@@ -1,14 +1,24 @@
 {
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "html-webpack-plugin": "^5.5.1",
     "prettier": "^2.8.8",
+    "style-loader": "^3.3.3",
     "stylelint": "^15.6.2",
     "stylelint-config-standard": "^33.0.0",
-    "stylelint-prettier": "^3.0.0"
+    "stylelint-prettier": "^3.0.0",
+    "webpack": "^5.84.1",
+    "webpack-cli": "^5.1.1"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^11.0.0",
     "save-dev": "^0.0.1-security"
+  },
+  "scripts": {
+    "build": "webpack"
   }
+
 }

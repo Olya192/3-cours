@@ -37,6 +37,18 @@ export function gameSet(appEl, selectedLevel) {
         34: './static/img/diamonds/7.svg',
         35: './static/img/diamonds/6.svg',
     }
+    let interval
+
+    let time = 0
+    let imgModal = ''
+    let textModal = ''
+
+    function getTime(t) {
+        let timeSplit = t.toFixed(2).toString().split('.')
+        return `${timeSplit[0].length < 2 ? '0' : ''}${timeSplit[0]}.${
+            timeSplit[1]
+        }`
+    }
 
     let shirt = ''
     const cardList = []
@@ -89,19 +101,44 @@ export function gameSet(appEl, selectedLevel) {
                     <p>sek</p>
                 </div>
                 <div class="game-time__number">
-                    <p>00.00</p>
+                    <p id="timer" >00.00</p>
                 </div>
             </div>
-            <button class="button-start" id="button-start" type="submit">Начать заново</button>
+            <button class="button-start" id="button-restart" type="submit">Начать заново</button>
         </div>
           <div class="card">
            ${shirt} 
           </div>
     </div>
+
+    
+</div>
+<div class="modal" id = "modal" >
+    <div class="content">
+    <img class="front-face"  src="${imgModal}"/>
+        <p class="title"> ${textModal}</p>
+        <p class="title"> Затраченное время:</p>
+        <p class="title" id = "modal-time">${getTime(time)}</p>
+        <button class="button-start" id="button-restart" type="submit">Играть снова</button>
+    </div>
      
   </div>`
 
     appEl.innerHTML = appHtml
+
+    const restartEl = document.getElementById('button-restart')
+
+    restartEl.addEventListener('click', () => {
+        clearInterval(timerGameStart)
+    })
+
+    const modalElement = document.getElementById('modal')
+    
+    function activeModal() {
+        let timerElement = document.getElementById('modal-time')
+        timerElement.textContent = getTime(time)
+        modalElement.style.visibility = 'visible'
+    }
 
     const cards = document.querySelectorAll('.gamebox__field-card-image')
 
@@ -132,17 +169,33 @@ export function gameSet(appEl, selectedLevel) {
         console.log(firstCard?.dataset)
         console.log(secondCard?.dataset)
 
-        if (firstCard && secondCard) {
-
-            setTimeout(() => {
-                  if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
-                alert('Вы выйграли')
-            } else {
-                alert('Вы проиграли')
-            }
-            }, 500) 
-          
+        if (time === 0) {
+            timerGameStart()
         }
+
+        if (firstCard && secondCard) {
+            clearInterval(interval)
+            setTimeout(() => {
+                if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
+                    imgModal = './static/img/win.svg"/'
+                    textModal = 'Вы выиграли!'
+                    activeModal()
+                } else {
+                    imgModal = './static/img/win.svg"/'
+                    textModal = 'Вы проиграли!'
+                    activeModal()
+                }
+            }, 500)
+        }
+    }
+
+    let timerElement = document.getElementById('timer')
+
+    const timerGameStart = () => {
+        interval = setInterval(() => {
+            time += 0.01
+            timerElement.textContent = getTime(time)
+        }, 100)
     }
 
     cards.forEach((card) => card.addEventListener('click', flipCard))

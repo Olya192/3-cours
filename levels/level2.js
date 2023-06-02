@@ -115,11 +115,11 @@ export function gameSet(appEl, selectedLevel) {
 </div>
 <div class="modal" id = "modal" >
     <div class="content">
-    <img class="front-face"  src="${imgModal}"/>
-        <p class="title"> ${textModal}</p>
+    <img  id="img-modal" src=""/>
+        <p class="title" id="text-modal"> </p>
         <p class="title"> Затраченное время:</p>
         <p class="title" id = "modal-time">${getTime(time)}</p>
-        <button class="button-start" id="button-restart" type="submit">Играть снова</button>
+        <button class="button-start" id="button-restart__modal" type="submit">Играть снова</button>
     </div>
      
   </div>`
@@ -133,12 +133,6 @@ export function gameSet(appEl, selectedLevel) {
     })
 
     const modalElement = document.getElementById('modal')
-    
-    function activeModal() {
-        let timerElement = document.getElementById('modal-time')
-        timerElement.textContent = getTime(time)
-        modalElement.style.visibility = 'visible'
-    }
 
     const cards = document.querySelectorAll('.gamebox__field-card-image')
 
@@ -154,6 +148,9 @@ export function gameSet(appEl, selectedLevel) {
 
     let firstCard, secondCard
     let hasFlippedCard = false
+
+    const imgModalEl = document.getElementById('img-modal')
+    const imgTextEl = document.getElementById('text-modal')
 
     function flipCard() {
         this.classList.add('flip')
@@ -177,16 +174,22 @@ export function gameSet(appEl, selectedLevel) {
             clearInterval(interval)
             setTimeout(() => {
                 if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
-                    imgModal = './static/img/win.svg"/'
-                    textModal = 'Вы выиграли!'
+                    imgModalEl.src = './static/win.svg'
+                    imgTextEl.textContent = 'Вы выиграли!'
                     activeModal()
                 } else {
-                    imgModal = './static/img/win.svg"/'
-                    textModal = 'Вы проиграли!'
+                    imgModalEl.src = './static/loos.svg'
+                    imgTextEl.textContent = 'Вы проиграли!'
                     activeModal()
                 }
             }, 500)
         }
+    }
+
+    function activeModal() {
+        let timerElement = document.getElementById('modal-time')
+        timerElement.textContent = getTime(time)
+        modalElement.style.visibility = 'visible'
     }
 
     let timerElement = document.getElementById('timer')
@@ -197,6 +200,9 @@ export function gameSet(appEl, selectedLevel) {
             timerElement.textContent = getTime(time)
         }, 100)
     }
+
+    //  document.getElementById('button-restart').addEventListener('click', ())
+    // document.getElementById('button-restart__modal').addEventListener('click', GameSelection)
 
     cards.forEach((card) => card.addEventListener('click', flipCard))
 }

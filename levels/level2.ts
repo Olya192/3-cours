@@ -1,5 +1,5 @@
-export function gameSet(appEl, selectedLevel) {
-    const card = {
+export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
+    const card: { [index: number]: any } = {
         0: './static/img/spades/A.svg',
         1: './static/img/spades/K.svg',
         2: './static/img/spades/Q.svg',
@@ -36,22 +36,25 @@ export function gameSet(appEl, selectedLevel) {
         33: './static/img/diamonds/8.svg',
         34: './static/img/diamonds/7.svg',
         35: './static/img/diamonds/6.svg',
-    }
-    let interval
+    } as const;
+
+    let interval: number
 
     let time = 0
-    let imgModal = ''
-    let textModal = ''
 
-    function getTime(t) {
+    function getTime(t: number) {
         let timeSplit = t.toFixed(2).toString().split('.')
-        return `${timeSplit[0].length < 2 ? '0' : ''}${timeSplit[0]}.${
-            timeSplit[1]
-        }`
+        return `${timeSplit[0].length < 2 ? '0' : ''}${timeSplit[0]}.${timeSplit[1]
+            }`
     }
 
     let shirt = ''
-    const cardList = []
+    type Card = {
+        url: string;
+        num: number;
+        id: number;
+    }
+    const cardList: Card[] = []
 
     function getRandomCard() {
         return Math.floor(Math.random() * 36)
@@ -68,7 +71,7 @@ export function gameSet(appEl, selectedLevel) {
     }
 
     for (let i = 0; i < cardsCount; i++) {
-        let n
+        let n: number
         while (true) {
             n = getRandomCard()
             const isExist = cardList.find((item) => item.url === card[n])
@@ -124,13 +127,7 @@ export function gameSet(appEl, selectedLevel) {
      
   </div>`
 
-    appEl.innerHTML = appHtml
-
-    const restartEl = document.getElementById('button-restart')
-
-    restartEl.addEventListener('click', () => {
-        clearInterval(timerGameStart)
-    })
+    appEl!.innerHTML = appHtml
 
     const modalElement = document.getElementById('modal')
 
@@ -146,13 +143,13 @@ export function gameSet(appEl, selectedLevel) {
 
     timer()
 
-    let firstCard, secondCard
+    let firstCard: HTMLElement, secondCard: HTMLElement
     let hasFlippedCard = false
 
     const imgModalEl = document.getElementById('img-modal')
     const imgTextEl = document.getElementById('text-modal')
 
-    function flipCard() {
+    function flipCard(this: HTMLElement) {
         this.classList.add('flip')
 
         if (!hasFlippedCard) {
@@ -174,12 +171,12 @@ export function gameSet(appEl, selectedLevel) {
             clearInterval(interval)
             setTimeout(() => {
                 if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
-                    imgModalEl.src = './static/win.svg'
-                    imgTextEl.textContent = 'Вы выиграли!'
+                    (imgModalEl as HTMLInputElement).src = './static/win.svg'
+                    imgTextEl!.textContent = 'Вы выиграли!'
                     activeModal()
                 } else {
-                    imgModalEl.src = './static/loos.svg'
-                    imgTextEl.textContent = 'Вы проиграли!'
+                    (imgModalEl as HTMLInputElement).src = './static/loos.svg'
+                    imgTextEl!.textContent = 'Вы проиграли!'
                     activeModal()
                 }
             }, 500)
@@ -188,16 +185,16 @@ export function gameSet(appEl, selectedLevel) {
 
     function activeModal() {
         let timerElement = document.getElementById('modal-time')
-        timerElement.textContent = getTime(time)
-        modalElement.style.visibility = 'visible'
+        timerElement!.textContent = getTime(time)
+        modalElement!.style.visibility = 'visible'
     }
 
     let timerElement = document.getElementById('timer')
 
     const timerGameStart = () => {
-        interval = setInterval(() => {
+        interval = window.setInterval(() => {
             time += 0.01
-            timerElement.textContent = getTime(time)
+            timerElement!.textContent = getTime(time)
         }, 100)
     }
 

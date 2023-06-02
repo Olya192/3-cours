@@ -1,4 +1,4 @@
-import { GameSelection } from './gameSelection.js'
+import { GameSelection } from './gameSelection'
 
 const appEl = document.getElementById('app')
 

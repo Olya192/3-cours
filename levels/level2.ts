@@ -1,3 +1,7 @@
+import { GameSelection } from "../gameSelection";
+import { appEl } from "../main";
+
+
 export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
     const card: { [index: number]: any } = {
         0: './static/img/spades/A.svg',
@@ -118,10 +122,10 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
 </div>
 <div class="modal" id = "modal" >
     <div class="content">
-    <img  id="img-modal" src=""/>
-        <p class="title" id="text-modal"> </p>
-        <p class="title"> Затраченное время:</p>
-        <p class="title" id = "modal-time">${getTime(time)}</p>
+    <img class="img-modal" id="img-modal" src=""/>
+        <p class="text-modal" id="text-modal"> </p>
+        <p class="time-modal"> Затраченное время:</p>
+        <p class="time-modal__timer" id = "modal-time">${getTime(time)}</p>
         <button class="button-start" id="button-restart__modal" type="submit">Играть снова</button>
     </div>
      
@@ -198,8 +202,17 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
         }, 100)
     }
 
-    //  document.getElementById('button-restart').addEventListener('click', ())
-    // document.getElementById('button-restart__modal').addEventListener('click', GameSelection)
+
+    const restartEl  = document.getElementById('button-restart')
+    const modalRestartEl = document.getElementById('button-restart__modal')
+
+        restartEl?.addEventListener('click', () => {
+            GameSelection(appEl);
+        })
+    modalRestartEl?.addEventListener('click', () => {
+        GameSelection(appEl);
+    })
+
 
     cards.forEach((card) => card.addEventListener('click', flipCard))
 }

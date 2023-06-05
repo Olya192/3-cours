@@ -1,6 +1,11 @@
 import { GameSelection } from "../gameSelection";
 import { appEl } from "../main";
 
+export function getTime(t: number) {
+    let timeSplit = t.toFixed(2).toString().split('.')
+    return `${timeSplit[0].length < 2 ? '0' : ''}${timeSplit[0]}.${timeSplit[1]
+        }`
+}
 
 export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
     const card: { [index: number]: any } = {
@@ -46,11 +51,7 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
 
     let time = 0
 
-    function getTime(t: number) {
-        let timeSplit = t.toFixed(2).toString().split('.')
-        return `${timeSplit[0].length < 2 ? '0' : ''}${timeSplit[0]}.${timeSplit[1]
-            }`
-    }
+
 
     let shirt = ''
     type Card = {
@@ -64,7 +65,7 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
         return Math.floor(Math.random() * 36)
     }
 
-    let cardsCount
+    let cardsCount: number
 
     if (selectedLevel == 'radio1') {
         cardsCount = 3
@@ -147,7 +148,7 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
 
     timer()
 
-    let firstCard: HTMLElement, secondCard: HTMLElement
+    let firstCard: HTMLElement | null, secondCard: HTMLElement | null
     let hasFlippedCard = false
 
     const imgModalEl = document.getElementById('img-modal')
@@ -164,26 +165,43 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
             secondCard = this
         }
 
-        console.log(firstCard?.dataset)
-        console.log(secondCard?.dataset)
-
         if (time === 0) {
             timerGameStart()
         }
 
         if (firstCard && secondCard) {
-            clearInterval(interval)
-            setTimeout(() => {
-                if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
-                    (imgModalEl as HTMLInputElement).src = './static/win.svg'
-                    imgTextEl!.textContent = 'Вы выиграли!'
-                    activeModal()
-                } else {
-                    (imgModalEl as HTMLInputElement).src = './static/loos.svg'
-                    imgTextEl!.textContent = 'Вы проиграли!'
-                    activeModal()
+
+
+            // setTimeout(() => {
+
+            if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
+                firstCard?.classList.add('check')
+                secondCard?.classList.add('check')
+                const checkCard = document.getElementsByClassName('gamebox__field-card-image');
+                let checkCount = 0
+                for (let i = 0; i < cardsCount * 2; i++) {
+                    const check = checkCard[i].classList.contains('check')
+                    console.log('1', checkCount)
+                    if (check) checkCount++
+                    if (checkCount === cardsCount * 2) {
+                        (imgModalEl as HTMLInputElement).src = './static/win.svg'
+                        imgTextEl!.textContent = 'Вы выиграли!'
+                        activeModal()
+                        clearInterval(interval)
+                    }
                 }
-            }, 500)
+                firstCard = null;
+                secondCard = null;
+
+            } else {
+                (imgModalEl as HTMLInputElement).src = './static/loos.svg'
+                imgTextEl!.textContent = 'Вы проиграли!'
+                activeModal()
+                clearInterval(interval)
+            }
+            // }, 500)
+
+
         }
     }
 
@@ -203,12 +221,12 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
     }
 
 
-    const restartEl  = document.getElementById('button-restart')
+    const restartEl = document.getElementById('button-restart')
     const modalRestartEl = document.getElementById('button-restart__modal')
 
-        restartEl?.addEventListener('click', () => {
-            GameSelection(appEl);
-        })
+    restartEl?.addEventListener('click', () => {
+        GameSelection(appEl);
+    })
     modalRestartEl?.addEventListener('click', () => {
         GameSelection(appEl);
     })

@@ -93,7 +93,7 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
     const cardsListSort = cardList.sort((a, b) => (a.num <= b.num ? -1 : 1))
 
     for (let i = 0; i < cardList.length; i++) {
-        shirt += `<div class="gamebox__field-card-image flip" data-id="${cardsListSort[i].id}">
+        shirt += `<div class="gamebox-field-card-image flip" data-id="${cardsListSort[i].id}">
         <img class="front-face" id="${i}" src="${cardsListSort[i].url}"/>
         <img class="back-face" src="./static/img/shirt.svg"/>
           </div>`
@@ -104,11 +104,11 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
     <div>
         <div class="game">
             <div class="game-time">
-                <div class="game-time__name">
+                <div class="game-time-name">
                     <p>min</p>
                     <p>sek</p>
                 </div>
-                <div class="game-time__number">
+                <div class="game-time-number">
                     <p id="timer" >00.00</p>
                 </div>
             </div>
@@ -126,7 +126,7 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
     <img class="img-modal" id="img-modal" src=""/>
         <p class="text-modal" id="text-modal"> </p>
         <p class="time-modal"> Затраченное время:</p>
-        <p class="time-modal__timer" id = "modal-time">${getTime(time)}</p>
+        <p class="time-modal-timer" id = "modal-time">${getTime(time)}</p>
         <button class="button-start" id="button-restart__modal" type="submit">Играть снова</button>
     </div>
      
@@ -136,7 +136,7 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
 
     const modalElement = document.getElementById('modal')
 
-    const cards = document.querySelectorAll('.gamebox__field-card-image')
+    const cards = document.querySelectorAll('.gamebox-field-card-image')
 
     const timer = () => {
         setTimeout(() => {
@@ -177,7 +177,7 @@ export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
             if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
                 firstCard?.classList.add('check')
                 secondCard?.classList.add('check')
-                const checkCard = document.getElementsByClassName('gamebox__field-card-image');
+                const checkCard = document.getElementsByClassName('gamebox-field-card-image');
                 let checkCount = 0
                 for (let i = 0; i < cardsCount * 2; i++) {
                     const check = checkCard[i].classList.contains('check')

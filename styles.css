@@ -4,15 +4,15 @@
 }
 
 @font-face {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
-    src: local("StratosSkyeng"),
-        url("./Stratos/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff") format("woff"),
-        url("./Stratos/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff2") format("woff2");
+    src: local('StratosSkyeng'),
+        url('./Stratos/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff')
+            format('woff'),
+        url('./Stratos/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff2')
+            format('woff2');
 }
-
-
 
 .container {
     height: 100vh;
@@ -26,7 +26,7 @@
 }
 
 .title {
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
@@ -39,14 +39,13 @@
 .content {
     width: 480px;
     height: 459px;
-    background: #C2F5FF;
+    background: #c2f5ff;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
-
 
 .button-select {
     display: flex;
@@ -55,7 +54,7 @@
     list-style-type: none;
 }
 
-.button-select__button input[type="radio"] {
+.button-select-button input[type='radio'] {
     display: none;
 }
 
@@ -71,39 +70,37 @@
     height: 50px;
     left: 389px;
     top: 519px;
-    background: #7AC100;
+    background: #7ac100;
     border-radius: 12px;
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    color: #FFFFFF;
+    color: #fff;
     border: none;
     cursor: pointer;
 }
 
-.button-select__button label {
-
+.button-select-button label {
     text-align: center;
     width: 98px;
     height: 98px;
-    background: #FFFFFF;
+    background: #fff;
     border-radius: 12px;
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 150%;
-    color: #0080C1;
+    color: #0080c1;
     border: none;
     cursor: pointer;
     align-items: center;
-
 }
 
-.button-select__button label,
-.button-select__button input {
+.button-select-button label,
+.button-select-button input {
     display: block;
 }
 
@@ -122,45 +119,44 @@
     padding-bottom: 35px;
 }
 
-.game-time__number {
-    font-family: 'StratosSkyeng';
+.game-time-number {
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
-    color: #FFFFFF;
-
+    color: #fff;
 }
 
-.game-time__name {
-    font-family: 'StratosSkyeng';
+.game-time-name {
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 32px;
-    font-feature-settings: 'pnum'on, 'lnum'on;
-    color: #FFFFFF;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #fff;
     display: flex;
     padding-left: 29px;
     gap: 59px;
 }
 
-.gamebox__field-card-image {
+.gamebox-field-card-image {
     height: 133px;
     width: 95px;
     position: relative;
     transform: scale(1);
     transform-style: preserve-3d;
-    transition: transform .5s;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    transition: transform 0.5s;
+    box-shadow: 1px 1px 1px #0000004d;
 }
 
-.gamebox__field-card-image:active {
+.gamebox-field-card-image:active {
     transform: scale(0.97);
-    transition: transform .2s;
+    transition: transform 0.2s;
 }
 
-.gamebox__field-card-image.flip {
+.gamebox-field-card-image.flip {
     transform: rotateY(180deg);
 }
 
@@ -188,39 +184,38 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 30;
-    background-color: rgba(0, 73, 128, 0.9);
+    background-color: #004980e6;
 }
 
-
 .text-modal {
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 40px;
     line-height: 48px;
-    font-feature-settings: 'pnum'on, 'lnum'on;
+    font-feature-settings: 'pnum' on, 'lnum' on;
     color: #004980;
 }
 
 .time-modal {
-    font-family: 'StratosSkyeng';
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    font-feature-settings: 'pnum'on, 'lnum'on;
-    color: #000000;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000;
 }
 
-.time-modal__timer {
-    font-family: 'StratosSkyeng';
+.time-modal-timer {
+    font-family: StratosSkyeng, sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 72px;
-    color: #000000;
+    color: #000;
 }
 
 .act {
-    background-color: #7AC100 !important;
+    background-color: #7ac100 !important;
 }

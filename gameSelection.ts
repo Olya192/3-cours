@@ -13,15 +13,15 @@ export function GameSelection(appEl: HTMLElement | null) {
         <p class="title"> Выбери сложность</p>
         <form class="form" id="form-select">
             <ul class="button-select">
-                <li class="button-select__button">
+                <li class="button-select-button">
                     <input class="radio" type="radio" name="radio" id="radio1" value="radio1" />
                     <label class="radio-label" id = "radio-label" for="radio1">1</label>
                 </li>
-                <li class="button-select__button">
+                <li class="button-select-button">
                     <input class="radio" type="radio" name="radio" id="radio2" value="radio2"/>
                     <label class="radio-label" id = "radio-label" for="radio2">2</label>
                 </li>
-                <li class="button-select__button">
+                <li class="button-select-button">
                     <input class="radio" type="radio" name="radio" id="radio3" value="radio3"/>
                     <label class="radio-label" id = "radio-label" for="radio3">3</label>
                 </li>

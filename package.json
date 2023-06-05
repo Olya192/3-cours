@@ -27,6 +27,8 @@
     "build": "webpack",
     "test": "jest",
     "prepare": "husky install",
+    "lint:css": "stylelint **/*.css",
+    "lint:js": "eslint **/*.js",
     "lint": "npm run lint:css"
   }
 }

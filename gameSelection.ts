@@ -15,15 +15,15 @@ export function GameSelection(appEl: HTMLElement | null) {
             <ul class="button-select">
                 <li class="button-select__button">
                     <input class="radio" type="radio" name="radio" id="radio1" value="radio1" />
-                    <label for="radio1">1</label>
+                    <label class="radio-label" id = "radio-label" for="radio1">1</label>
                 </li>
                 <li class="button-select__button">
                     <input class="radio" type="radio" name="radio" id="radio2" value="radio2"/>
-                    <label for="radio2">2</label>
+                    <label class="radio-label" id = "radio-label" for="radio2">2</label>
                 </li>
                 <li class="button-select__button">
                     <input class="radio" type="radio" name="radio" id="radio3" value="radio3"/>
-                    <label for="radio3">3</label>
+                    <label class="radio-label" id = "radio-label" for="radio3">3</label>
                 </li>
             </ul>
 
@@ -42,11 +42,20 @@ export function GameSelection(appEl: HTMLElement | null) {
     }
 
     renderGameSelection(appEl)
+    const labelEl = document.getElementById('radio-label')
+    labelEl?.addEventListener('click', (e) => {
+        labelEl?.classList.toggle('act')
+    })
+
 
     const startButtonEl = document.getElementById('form-select')
     console.log(startButtonEl)
     startButtonEl?.addEventListener('submit', (e) => {
         e.preventDefault()
+
+
+
+
         let radioInputs = document.querySelectorAll('.radio')
 
         radioInputs.forEach((radioInput) => {

@@ -1,5 +1,9 @@
-export function gameSet(appEl, selectedLevel) {
-    const card = {
+import { GameSelection } from "../gameSelection";
+import { appEl } from "../main";
+
+
+export function gameSet(appEl: HTMLElement | null, selectedLevel: string) {
+    const card: { [index: number]: any } = {
         0: './static/img/spades/A.svg',
         1: './static/img/spades/K.svg',
         2: './static/img/spades/Q.svg',
@@ -36,10 +40,25 @@ export function gameSet(appEl, selectedLevel) {
         33: './static/img/diamonds/8.svg',
         34: './static/img/diamonds/7.svg',
         35: './static/img/diamonds/6.svg',
+    } as const;
+
+    let interval: number
+
+    let time = 0
+
+    function getTime(t: number) {
+        let timeSplit = t.toFixed(2).toString().split('.')
+        return `${timeSplit[0].length < 2 ? '0' : ''}${timeSplit[0]}.${timeSplit[1]
+            }`
     }
 
     let shirt = ''
-    const cardList = []
+    type Card = {
+        url: string;
+        num: number;
+        id: number;
+    }
+    const cardList: Card[] = []
 
     function getRandomCard() {
         return Math.floor(Math.random() * 36)
@@ -56,7 +75,7 @@ export function gameSet(appEl, selectedLevel) {
     }
 
     for (let i = 0; i < cardsCount; i++) {
-        let n
+        let n: number
         while (true) {
             n = getRandomCard()
             const isExist = cardList.find((item) => item.url === card[n])
@@ -89,19 +108,32 @@ export function gameSet(appEl, selectedLevel) {
                     <p>sek</p>
                 </div>
                 <div class="game-time__number">
-                    <p>00.00</p>
+                    <p id="timer" >00.00</p>
                 </div>
             </div>
-            <button class="button-start" id="button-start" type="submit">Начать заново</button>
+            <button class="button-start" id="button-restart" type="submit">Начать заново</button>
         </div>
           <div class="card">
            ${shirt} 
           </div>
     </div>
+
+    
+</div>
+<div class="modal" id = "modal" >
+    <div class="content">
+    <img class="img-modal" id="img-modal" src=""/>
+        <p class="text-modal" id="text-modal"> </p>
+        <p class="time-modal"> Затраченное время:</p>
+        <p class="time-modal__timer" id = "modal-time">${getTime(time)}</p>
+        <button class="button-start" id="button-restart__modal" type="submit">Играть снова</button>
+    </div>
      
   </div>`
 
-    appEl.innerHTML = appHtml
+    appEl!.innerHTML = appHtml
+
+    const modalElement = document.getElementById('modal')
 
     const cards = document.querySelectorAll('.gamebox__field-card-image')
 
@@ -115,10 +147,13 @@ export function gameSet(appEl, selectedLevel) {
 
     timer()
 
-    let firstCard, secondCard
+    let firstCard: HTMLElement, secondCard: HTMLElement
     let hasFlippedCard = false
 
-    function flipCard() {
+    const imgModalEl = document.getElementById('img-modal')
+    const imgTextEl = document.getElementById('text-modal')
+
+    function flipCard(this: HTMLElement) {
         this.classList.add('flip')
 
         if (!hasFlippedCard) {
@@ -132,18 +167,52 @@ export function gameSet(appEl, selectedLevel) {
         console.log(firstCard?.dataset)
         console.log(secondCard?.dataset)
 
-        if (firstCard && secondCard) {
+        if (time === 0) {
+            timerGameStart()
+        }
 
+        if (firstCard && secondCard) {
+            clearInterval(interval)
             setTimeout(() => {
-                  if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
-                alert('Вы выйграли')
-            } else {
-                alert('Вы проиграли')
-            }
-            }, 500) 
-          
+                if (firstCard?.dataset?.id === secondCard?.dataset?.id) {
+                    (imgModalEl as HTMLInputElement).src = './static/win.svg'
+                    imgTextEl!.textContent = 'Вы выиграли!'
+                    activeModal()
+                } else {
+                    (imgModalEl as HTMLInputElement).src = './static/loos.svg'
+                    imgTextEl!.textContent = 'Вы проиграли!'
+                    activeModal()
+                }
+            }, 500)
         }
     }
+
+    function activeModal() {
+        let timerElement = document.getElementById('modal-time')
+        timerElement!.textContent = getTime(time)
+        modalElement!.style.visibility = 'visible'
+    }
+
+    let timerElement = document.getElementById('timer')
+
+    const timerGameStart = () => {
+        interval = window.setInterval(() => {
+            time += 0.01
+            timerElement!.textContent = getTime(time)
+        }, 100)
+    }
+
+
+    const restartEl  = document.getElementById('button-restart')
+    const modalRestartEl = document.getElementById('button-restart__modal')
+
+        restartEl?.addEventListener('click', () => {
+            GameSelection(appEl);
+        })
+    modalRestartEl?.addEventListener('click', () => {
+        GameSelection(appEl);
+    })
+
 
     cards.forEach((card) => card.addEventListener('click', flipCard))
 }

@@ -1,7 +1,13 @@
-import { gameSet } from './levels/level2.js'
+import { gameSet } from './levels/level2'
 
-export function GameSelection(appEl) {
-    const renderGameSelection = (appEl) => {
+declare global {
+    interface Window {
+        application: any;
+    }
+}
+
+export function GameSelection(appEl: HTMLElement | null) {
+    const renderGameSelection = (appEl: HTMLElement | null) => {
         const appHtml = `<div class="container">
     <div class="content">
         <p class="title"> Выбери сложность</p>
@@ -31,21 +37,22 @@ export function GameSelection(appEl) {
 
 </div>`
 
-        appEl.innerHTML = appHtml
+        appEl!.innerHTML = appHtml
+
     }
 
     renderGameSelection(appEl)
 
     const startButtonEl = document.getElementById('form-select')
     console.log(startButtonEl)
-    startButtonEl.addEventListener('submit', (e) => {
+    startButtonEl?.addEventListener('submit', (e) => {
         e.preventDefault()
         let radioInputs = document.querySelectorAll('.radio')
 
         radioInputs.forEach((radioInput) => {
-            if (radioInput.checked) {
+            if ((radioInput as HTMLInputElement).checked) {
                 window.application = {
-                    level: radioInput.value,
+                    level: (radioInput as HTMLInputElement).value,
                 }
                 gameSet(appEl, window.application.level)
             }
